@@ -8,20 +8,46 @@
     </plugin-info>
 
 
-    <blueprint key="checklist-maintain-atlassian-blueprint"
-               content-template-key="checklist-index-template"
-               index-key="checklist-maintain-atlassian-products-index"
-    />
-
     <web-item key="create-checklist-maintain-atlassian-products" i18n-name-key="checklist.create-link.title" section="system.create.dialog/content">
         <description key="checklist.create-link.description" />
         <resource name="icon" type="download" location="/images/atlassianLogo.png" />
         <param name="blueprintKey" value="checklist-maintain-atlassian-blueprint" />
     </web-item>
 
-    <content-template key="checklist-index-template" template-title-key="checklist.blueprint.title">
+
+    <content-template key="checklist-installation-jira-template"
+                      i18n-name-key="checklist.blueprint.title">
+        <resource name="template" type="download" location="/templates/checklist-installation-jira-template.xml" />
+    </content-template>
+
+    <content-template key="checklist-installation-confluence-template"
+                      i18n-name-key="checklist.blueprint.title">
+        <resource name="template" type="download" location="/templates/checklist-installation-confluence-template.xml" />
+    </content-template>
+
+    <content-template key="checklist-index-template"
+                      i18n-name-key="checklist.blueprint.title">
         <resource name="template" type="download" location="/templates/index.xml" />
     </content-template>
+
+    <blueprint key="checklist-maintain-atlassian-blueprint"
+               index-template-key="checklist-index-template"
+               index-key="checklist-maintain-atlassian-products-index">
+
+        <content-template ref="checklist-installation-jira-template"/>
+        <content-template ref="checklist-installation-confluence-template"/>
+
+        <dialog-wizard key="checklist-blueprint-wizard">
+            <dialog-page id="checklistWizardMainPage"
+                         template-key="net.bytebrand.plugins.confluence.blueprints.checklist.wizardMainPage"
+                         title-key="checklist.wizard.blueprint.dialog.hello.title"
+                         description-header-key="checklist.wizard.blueprint.dialog.hello.header"
+                         description-content-key="checklist.wizard.blueprint.dialog.hello.description"
+                         last="true"/>
+        </dialog-wizard>
+    </blueprint>
+
+
 
     <!-- add our i18n resource -->
     <resource type="i18n" name="i18n" location="checklist_maintain_atlassian_products"/>
@@ -29,12 +55,26 @@
     <!-- add our web resources -->
     <web-resource key="checklist_maintain_atlassian_products-resources" name="checklist_maintain_atlassian_products Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
-        
+        <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:resources</dependency>
+
+        <transformation extension="js">
+            <transformer key="jsI18n"/>
+        </transformation>
+
+        <transformation extension="soy">
+            <transformer key="soyTransformer">
+                <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+            </transformer>
+        </transformation>
+
+        <resource type="download" name="templates-soy.js" location="/soy/templates.soy" />
         <resource type="download" name="checklist_maintain_atlassian_products.css" location="/css/checklist_maintain_atlassian_products.css"/>
         <resource type="download" name="checklist_maintain_atlassian_products.js" location="/js/checklist_maintain_atlassian_products.js"/>
         <resource type="download" name="images/" location="/images"/>
 
-        <context>checklist_maintain_atlassian_products</context>
+        <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:blueprint-resources</dependency>
+        <context>atl.general</context>
+        <context>atl.admin</context>
     </web-resource>
     
 </atlassian-plugin>
