@@ -1,0 +1,40 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+
+    <blueprint key="checklist-maintain-atlassian-blueprint"
+               content-template-key="checklist-index-template"
+               index-key="checklist-maintain-atlassian-products-index"
+    />
+
+    <web-item key="create-checklist-maintain-atlassian-products" i18n-name-key="checklist.create-link.title" section="system.create.dialog/content">
+        <description key="checklist.create-link.description" />
+        <resource name="icon" type="download" location="/images/atlassianLogo.png" />
+        <param name="blueprintKey" value="checklist-maintain-atlassian-blueprint" />
+    </web-item>
+
+    <content-template key="checklist-index-template" template-title-key="checklist.blueprint.title">
+        <resource name="template" type="download" location="/templates/index.xml" />
+    </content-template>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="checklist_maintain_atlassian_products"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="checklist_maintain_atlassian_products-resources" name="checklist_maintain_atlassian_products Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        
+        <resource type="download" name="checklist_maintain_atlassian_products.css" location="/css/checklist_maintain_atlassian_products.css"/>
+        <resource type="download" name="checklist_maintain_atlassian_products.js" location="/js/checklist_maintain_atlassian_products.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>checklist_maintain_atlassian_products</context>
+    </web-resource>
+    
+</atlassian-plugin>
