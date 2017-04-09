@@ -10,12 +10,12 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <organization>
-        <name>Example Company</name>
-        <url>http://www.example.com/</url>
+        <name>ByteBrand</name>
+        <url>http://www.bytebrand.net/</url>
     </organization>
 
-    <name>checklist_maintain_atlassian_products</name>
-    <description>This is the net.bytebrand.confluence.plugins.checklist_maintain_atlassian_products:checklist_maintain_atlassian_products plugin for Atlassian Confluence.</description>
+    <name>Checklist for maintain atlassian products (Jira/Confluence)</name>
+    <description>This is the simple checklist for maintain Atlassian products.</description>
     <packaging>atlassian-plugin</packaging>
 
     <dependencies>
@@ -29,6 +29,13 @@
             <groupId>com.atlassian.confluence</groupId>
             <artifactId>confluence</artifactId>
             <version>${confluence.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.confluence.plugins</groupId>
+            <artifactId>confluence-create-content-plugin</artifactId>
+            <version>${create.content.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -53,7 +60,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- WIRED TEST RUNNER DEPENDENCIES -->
         <dependency>
             <groupId>com.atlassian.plugins</groupId>
             <artifactId>atlassian-plugins-osgi-testrunner</artifactId>
@@ -92,27 +98,6 @@
                             <version>${quick.reload.version}</version>
                         </pluginArtifact>
                     </pluginArtifacts>
-
-                    <!-- See here for an explanation of default instructions: -->
-                    <!-- https://developer.atlassian.com/docs/advanced-topics/configuration-of-instructions-in-atlassian-plugins -->
-                    <instructions>
-                        <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
-
-                        <!-- Add package to export here -->
-                        <Export-Package>
-                            net.bytebrand.confluence.plugins.checklist_maintain_atlassian_products.api,
-                        </Export-Package>
-
-                        <!-- Add package import here -->
-                        <Import-Package>
-                            org.springframework.osgi.*;resolution:="optional",
-                            org.eclipse.gemini.blueprint.*;resolution:="optional",
-                            *
-                        </Import-Package>
-
-                        <!-- Ensure plugin is spring powered -->
-                        <Spring-Context>*</Spring-Context>
-                    </instructions>
                 </configuration>
             </plugin>
 
@@ -144,6 +129,7 @@
     <properties>
         <confluence.version>6.1.1</confluence.version>
         <confluence.data.version>6.1.1</confluence.data.version>
+        <create.content.version>6.0.13</create.content.version>
         <quick.reload.version>2.0.0</quick.reload.version>
         <amps.version>6.2.6</amps.version>
         <plugin.testrunner.version>1.2.3</plugin.testrunner.version>

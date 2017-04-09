@@ -1,14 +1,29 @@
 <p>
-    It's works Jira template !!
+    Jira template
 </p>
 
+
 <ul>
-<li><ac:placeholder>This is an example of instruction text that will get replaced when a user selects the text and begins typing.</ac:placeholder></li>
-<li><ac:placeholder ac:type="jira">This placeholder will launch the JIRA Issues macro dialog when clicked</ac:placeholder></li>
+<li>
+    Create Date:  <at:var at:name="currentDate"/>
+</li>
+
+<li>
+    Customer Name:  <at:var at:name="customerName"/>
+</li>
+
+<li>
+    Future Url:  <at:var at:name="futureUrl"/>
+</li>
 </ul>
 <ac:task-list>
 <ac:task>
     <ac:task-status>incomplete</ac:task-status>
-    <ac:task-body><ac:placeholder ac:type="mention">@mention example. This placeholder will automatically search for a user to mention in the page when the user begins typing.</ac:placeholder></ac:task-body>
+    <ac:task-body>
+        <ac:placeholder ac:type="mention">@mention example.
+            This placeholder will automatically search for a user to
+            mention in the page when the user begins typing.
+        </ac:placeholder>
+    </ac:task-body>
 </ac:task>
 </ac:task-list>

@@ -1,26 +1,26 @@
 {namespace net.bytebrand.plugins.confluence.blueprints.checklist}
 
 /**
- * Chooser form: First step of the wizard gives user a choice of sample pages (Jira/Confluence) to go to next.
+ * Initial form
  */
 {template .wizardMainPage}
     <form action="#" method="post" id="checklist-wizard-blueprint-form" class="aui">
         <fieldset>
             <div class="field-group">
-                <label for="checklist-blueprint-customer-name">{getText('checklist.wizard.blueprint.form.label.customer')}<span class="aui-icon icon-required"> required</span></label>
-                <input id="checklist-blueprint-customer-name" class="text" type="text" name="customer-name" title="customer-name" placeholder="{getText('checklist.wizard.blueprint.form.label.customer.placeholder')}" maxlength="255">
+                <label for="customer-name">{getText('checklist.wizard.blueprint.form.field.customer.label')}<span class="aui-icon icon-required"> required</span></label>
+                <input id="customer-name" class="text" type="text" name="customerName" title="customer-name" placeholder="{getText('checklist.wizard.blueprint.form.field.customer.placeholder')}" maxlength="255">
                 <div class="error"></div>
             </div>
             <div class="field-group">
-                <label for="checklist-blueprint-future-url">{getText('checklist.wizard.blueprint.form.label.url')}<span class="aui-icon icon-required"> required</span></label>
-                <input id="checklist-blueprint-future-url" class="text" type="text" name="future-url" title="future-url" placeholder="{getText('checklist.wizard.blueprint.form.label.url.placeholder')}" maxlength="255">
+                <label for="future-url">{getText('checklist.wizard.blueprint.form.field.url.label')}<span class="aui-icon icon-required"> required</span></label>
+                <input id="future-url" class="text" type="text" name="futureUrl" title="future-url" placeholder="{getText('checklist.wizard.blueprint.form.field.url.placeholder')}" maxlength="255">
                 <div class="error"></div>
             </div>
             <div class="field-group">
-                <label for="checklist-blueprint-template-key">{getText('checklist.wizard.blueprint.form.template.key')}</label>
-                <select id="checklist-blueprint-template-key" class="select" name="contentTemplateKey">
-                    <option value="checklist-installation-jira-template">{getText('checklist.wizard.blueprint.form.template.key.jira')}</option>
-                    <option value="checklist-installation-confluence-template">{getText('checklist.wizard.blueprint.form.template.key.confluence')}</option>
+                <label for="template-key">{getText('checklist.wizard.blueprint.form.field.template.choice.label')}</label>
+                <select id="template-key" class="select" name="contentTemplateKey">
+                    <option value="checklist-installation-jira-template">{getText('checklist.wizard.blueprint.form.field.template.choice.key.jira')}</option>
+                    <option value="checklist-installation-confluence-template">{getText('checklist.wizard.blueprint.form.field.template.choice.key.confluence')}</option>
                 </select>
             </div>
         </fieldset>

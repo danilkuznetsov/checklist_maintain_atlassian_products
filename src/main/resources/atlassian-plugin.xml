@@ -3,36 +3,42 @@
         <description>${project.description}</description>
         <version>${project.version}</version>
         <vendor name="${project.organization.name}" url="${project.organization.url}" />
-        <param name="plugin-icon">images/pluginIcon.png</param>
-        <param name="plugin-logo">images/pluginLogo.png</param>
+        <param name="plugin-icon">images/atlassianLogo.png</param>
+        <param name="plugin-logo">images/atlassianLogo.png</param>
     </plugin-info>
 
+    <component key="dateService" class="net.bytebrand.confluence.plugins.checklist_maintain_atlassian_products.DefaultDateService">
+        <interface>net.bytebrand.confluence.plugins.checklist_maintain_atlassian_products.DateService</interface>
+    </component>
 
-    <web-item key="create-checklist-maintain-atlassian-products" i18n-name-key="checklist.create-link.title" section="system.create.dialog/content">
+    <web-item key="create-checklist-maintain-atlassian-products"
+              i18n-name-key="checklist.create-link.title"
+              section="system.create.dialog/content">
         <description key="checklist.create-link.description" />
         <resource name="icon" type="download" location="/images/atlassianLogo.png" />
-        <param name="blueprintKey" value="checklist-maintain-atlassian-blueprint" />
+        <param name="blueprintKey" value="checklist-maintain-atlassian-products-blueprint" />
     </web-item>
 
-
     <content-template key="checklist-installation-jira-template"
-                      i18n-name-key="checklist.blueprint.title">
+                      i18n-name-key="checklist.blueprint.template.jira.title">
         <resource name="template" type="download" location="/templates/checklist-installation-jira-template.xml" />
+        <context-provider class="net.bytebrand.confluence.plugins.checklist_maintain_atlassian_products.CheckListBluePrintContextProvider"/>
     </content-template>
 
     <content-template key="checklist-installation-confluence-template"
-                      i18n-name-key="checklist.blueprint.title">
+                      i18n-name-key="checklist.blueprint.template.confluence.title">
         <resource name="template" type="download" location="/templates/checklist-installation-confluence-template.xml" />
+        <context-provider class="net.bytebrand.confluence.plugins.checklist_maintain_atlassian_products.CheckListBluePrintContextProvider"/>
     </content-template>
 
     <content-template key="checklist-index-template"
-                      i18n-name-key="checklist.blueprint.title">
+                      i18n-name-key="checklist.blueprint.template.index.title">
         <resource name="template" type="download" location="/templates/index.xml" />
     </content-template>
 
-    <blueprint key="checklist-maintain-atlassian-blueprint"
+    <blueprint key="checklist-maintain-atlassian-products-blueprint"
                index-template-key="checklist-index-template"
-               index-key="checklist-maintain-atlassian-products-index">
+               index-key="checklist-maintain-atlassian-products">
 
         <content-template ref="checklist-installation-jira-template"/>
         <content-template ref="checklist-installation-confluence-template"/>
@@ -40,14 +46,12 @@
         <dialog-wizard key="checklist-blueprint-wizard">
             <dialog-page id="checklistWizardMainPage"
                          template-key="net.bytebrand.plugins.confluence.blueprints.checklist.wizardMainPage"
-                         title-key="checklist.wizard.blueprint.dialog.hello.title"
-                         description-header-key="checklist.wizard.blueprint.dialog.hello.header"
-                         description-content-key="checklist.wizard.blueprint.dialog.hello.description"
+                         title-key="checklist.wizard.blueprint.dialog.title"
+                         description-header-key="checklist.wizard.blueprint.dialog.header"
+                         description-content-key="checklist.wizard.blueprint.dialog.description"
                          last="true"/>
         </dialog-wizard>
     </blueprint>
-
-
 
     <!-- add our i18n resource -->
     <resource type="i18n" name="i18n" location="checklist_maintain_atlassian_products"/>
@@ -56,6 +60,7 @@
     <web-resource key="checklist_maintain_atlassian_products-resources" name="checklist_maintain_atlassian_products Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
         <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:resources</dependency>
+        <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:blueprint-resources</dependency>
 
         <transformation extension="js">
             <transformer key="jsI18n"/>
@@ -72,7 +77,7 @@
         <resource type="download" name="checklist_maintain_atlassian_products.js" location="/js/checklist_maintain_atlassian_products.js"/>
         <resource type="download" name="images/" location="/images"/>
 
-        <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:blueprint-resources</dependency>
+        <context>checklist_maintain_atlassian_products</context>
         <context>atl.general</context>
         <context>atl.admin</context>
     </web-resource>
