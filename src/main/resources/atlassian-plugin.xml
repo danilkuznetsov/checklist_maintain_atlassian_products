@@ -48,6 +48,12 @@
                          template-key="net.bytebrand.plugins.confluence.blueprints.checklist.wizardMainPage"
                          title-key="checklist.wizard.blueprint.dialog.title"
                          description-header-key="checklist.wizard.blueprint.dialog.header"
+                         description-content-key="checklist.wizard.blueprint.dialog.description"/>
+
+            <dialog-page id="checklistWizardConfirmPage"
+                         template-key="net.bytebrand.plugins.confluence.blueprints.checklist.wizardConfirmPage"
+                         title-key="checklist.wizard.blueprint.dialog.title"
+                         description-header-key="checklist.wizard.blueprint.dialog.header"
                          description-content-key="checklist.wizard.blueprint.dialog.description"
                          last="true"/>
         </dialog-wizard>
@@ -72,9 +78,10 @@
             </transformer>
         </transformation>
 
-        <resource type="download" name="templates-soy.js" location="/soy/templates.soy" />
+
         <resource type="download" name="checklist_maintain_atlassian_products.css" location="/css/checklist_maintain_atlassian_products.css"/>
         <resource type="download" name="checklist_maintain_atlassian_products.js" location="/js/checklist_maintain_atlassian_products.js"/>
+        <resource type="download" name="checklist-wizard.soy.js" location="/soy/checklist-wizard.soy" />
         <resource type="download" name="images/" location="/images"/>
 
         <context>checklist_maintain_atlassian_products</context>
