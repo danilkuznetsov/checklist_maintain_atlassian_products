@@ -18,13 +18,44 @@
     <description>This is the simple checklist for maintain Atlassian products.</description>
     <packaging>atlassian-plugin</packaging>
 
+
+    <properties>
+        <confluence.version>6.1.1</confluence.version>
+        <confluence.data.version>6.1.1</confluence.data.version>
+        <create.content.version>6.0.13</create.content.version>
+        <quick.reload.version>2.0.0</quick.reload.version>
+        <amps.version>6.2.6</amps.version>
+        <plugin.testrunner.version>1.2.3</plugin.testrunner.version>
+        <atlassian.spring.scanner.version>1.2.13</atlassian.spring.scanner.version>
+        <!-- This key is used to keep the consistency between the key in atlassian-plugin.xml and the key to generate bundle. -->
+        <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
+    </properties>
+    <repositories>
+        <repository>
+            <id>atlassian-public</id>
+            <url>https://maven.atlassian.com/repository/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+        </repository>
+    </repositories>
+    
     <dependencies>
+
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
+            <groupId>com.atlassian.confluence</groupId>
+            <artifactId>confluence-plugins-platform-pom</artifactId>
+            <version>${confluence.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
         </dependency>
+
         <dependency>
             <groupId>com.atlassian.confluence</groupId>
             <artifactId>confluence</artifactId>
@@ -61,12 +92,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.atlassian.plugins</groupId>
-            <artifactId>atlassian-plugins-osgi-testrunner</artifactId>
-            <version>${plugin.testrunner.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>jsr311-api</artifactId>
             <version>1.1.1</version>
@@ -77,6 +102,7 @@
             <artifactId>gson</artifactId>
             <version>2.2.2-atlassian-1</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -126,16 +152,5 @@
         </plugins>
     </build>
 
-    <properties>
-        <confluence.version>6.1.1</confluence.version>
-        <confluence.data.version>6.1.1</confluence.data.version>
-        <create.content.version>6.0.13</create.content.version>
-        <quick.reload.version>2.0.0</quick.reload.version>
-        <amps.version>6.2.6</amps.version>
-        <plugin.testrunner.version>1.2.3</plugin.testrunner.version>
-        <atlassian.spring.scanner.version>1.2.13</atlassian.spring.scanner.version>
-        <!-- This key is used to keep the consistency between the key in atlassian-plugin.xml and the key to generate bundle. -->
-        <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
-    </properties>
 
 </project>
