@@ -11,6 +11,8 @@
         <interface>net.bytebrand.confluence.plugins.checklist_maintain_atlassian_products.DateService</interface>
     </component>
 
+    <component key="checkListListener" class="net.bytebrand.confluence.plugins.checklist_maintain_atlassian_products.listener.CheckListEventListener"/>
+
     <web-item key="create-checklist-maintain-atlassian-products"
               i18n-name-key="checklist.create-link.title"
               section="system.create.dialog/content">
@@ -65,8 +67,8 @@
     <!-- add our web resources -->
     <web-resource key="checklist_maintain_atlassian_products-resources" name="checklist_maintain_atlassian_products Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
-        <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:resources</dependency>
-        <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:blueprint-resources</dependency>
+        <!--<dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:resources</dependency>-->
+        <!--<dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:blueprint-resources</dependency>-->
 
         <transformation extension="js">
             <transformer key="jsI18n"/>
